@@ -30,6 +30,7 @@
                 <Setter Property="FontAttributes" Value="Bold" />
                 <Setter Property="TextColor" Value="{StaticResource PrimaryText}" />
                 <Setter Property="CharacterSpacing" Value="0.5" />
+                <Setter Property="FontFamily" Value="OpenSansSemibold" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -51,11 +52,13 @@
                             Text="Life Dashboard"
                             FontSize="32"
                             FontAttributes="Bold"
+                            FontFamily="OpenSansSemibold"
                             TextColor="{StaticResource Accent}"
                             CharacterSpacing="1.1" />
                         <Label
                             Text="Your daily focus, streaks, and progress in one place."
                             FontSize="12"
+                            FontFamily="OpenSansRegular"
                             TextColor="{StaticResource MutedText}" />
                     </VerticalStackLayout>
 
@@ -83,21 +86,23 @@
                     <Grid Grid.Row="1" ColumnDefinitions="*,*" ColumnSpacing="12">
                         <Frame Style="{StaticResource CardFrame}" Padding="14">
                             <VerticalStackLayout Spacing="8">
-                                <Label Text="Focus" FontSize="11" TextColor="{StaticResource MutedText}" />
+                                <Label Text="Focus" FontSize="11" FontFamily="OpenSansSemibold" TextColor="{StaticResource MutedText}" />
                                 <Label
                                     Text="3 priorities"
                                     FontSize="18"
                                     FontAttributes="Bold"
+                                    FontFamily="OpenSansSemibold"
                                     TextColor="{StaticResource PrimaryText}" />
                             </VerticalStackLayout>
                         </Frame>
                         <Frame Grid.Column="1" Style="{StaticResource CardFrame}" Padding="14">
                             <VerticalStackLayout Spacing="8">
-                                <Label Text="Momentum" FontSize="11" TextColor="{StaticResource MutedText}" />
+                                <Label Text="Momentum" FontSize="11" FontFamily="OpenSansSemibold" TextColor="{StaticResource MutedText}" />
                                 <Label
                                     Text="Streak ready"
                                     FontSize="18"
                                     FontAttributes="Bold"
+                                    FontFamily="OpenSansSemibold"
                                     TextColor="{StaticResource AccentAlt}" />
                             </VerticalStackLayout>
                         </Frame>
@@ -126,17 +131,20 @@
                                     Text="Level 0"
                                     FontSize="26"
                                     FontAttributes="Bold"
+                                    FontFamily="OpenSansSemibold"
                                     TextColor="{StaticResource Accent}" />
                                 <Label
                                     x:Name="XpLabel"
                                     Text="0 / 100 XP"
                                     FontSize="12"
+                                    FontFamily="OpenSansRegular"
                                     TextColor="{StaticResource MutedText}" />
                                 <Label
                                     x:Name="XpPercentLabel"
                                     Text="0%"
                                     FontSize="11"
                                     FontAttributes="Bold"
+                                    FontFamily="OpenSansSemibold"
                                     TextColor="{StaticResource AccentAlt}" />
                             </VerticalStackLayout>
                         </Grid>
@@ -147,12 +155,12 @@
                                 Progress="0"
                                 HeightRequest="10"
                                 ProgressColor="{StaticResource Accent}"
-                                BackgroundColor="#e2e8f0" />
+                                BackgroundColor="#cbd5e1" />
 
                             <Grid ColumnDefinitions="Auto,*,Auto">
-                                <Label Text="Leveling" FontSize="10" TextColor="{StaticResource MutedText}" />
+                                <Label Text="Leveling" FontSize="10" FontFamily="OpenSansSemibold" TextColor="{StaticResource MutedText}" />
                                 <BoxView Grid.Column="1" />
-                                <Label Grid.Column="2" Text="Next milestone" FontSize="10" TextColor="{StaticResource MutedText}" />
+                                <Label Grid.Column="2" Text="Next milestone" FontSize="10" FontFamily="OpenSansSemibold" TextColor="{StaticResource MutedText}" />
                             </Grid>
                         </VerticalStackLayout>
 
@@ -167,20 +175,21 @@
                             <VerticalStackLayout Spacing="12">
                                 <HorizontalStackLayout Spacing="10">
                                     <Label Text="📋" FontSize="20" />
-                                    <Label Text="Tasks" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource PrimaryText}" />
+                                    <Label Text="Tasks" FontSize="14" FontAttributes="Bold" FontFamily="OpenSansSemibold" TextColor="{StaticResource PrimaryText}" />
                                 </HorizontalStackLayout>
                                 <Label
                                     x:Name="TaskStatsLabel"
                                     Text="0/0"
                                     FontSize="24"
                                     FontAttributes="Bold"
+                                    FontFamily="OpenSansSemibold"
                                     TextColor="{StaticResource Success}" />
                                 <ProgressBar
                                     x:Name="TaskProgressBar"
                                     Progress="0"
                                     HeightRequest="6"
                                     ProgressColor="{StaticResource Success}"
-                                    BackgroundColor="#e2e8f0" />
+                                    BackgroundColor="#cbd5e1" />
                             </VerticalStackLayout>
                         </Frame>
 
@@ -188,20 +197,21 @@
                             <VerticalStackLayout Spacing="12">
                                 <HorizontalStackLayout Spacing="10">
                                     <Label Text="🎯" FontSize="20" />
-                                    <Label Text="Habits" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource PrimaryText}" />
+                                    <Label Text="Habits" FontSize="14" FontAttributes="Bold" FontFamily="OpenSansSemibold" TextColor="{StaticResource PrimaryText}" />
                                 </HorizontalStackLayout>
                                 <Label
                                     x:Name="HabitStatsLabel"
                                     Text="0/0"
                                     FontSize="24"
                                     FontAttributes="Bold"
+                                    FontFamily="OpenSansSemibold"
                                     TextColor="{StaticResource Warning}" />
                                 <ProgressBar
                                     x:Name="HabitProgressBar"
                                     Progress="0"
                                     HeightRequest="6"
                                     ProgressColor="{StaticResource Warning}"
-                                    BackgroundColor="#e2e8f0" />
+                                    BackgroundColor="#cbd5e1" />
                             </VerticalStackLayout>
                         </Frame>
                     </Grid>
@@ -220,8 +230,8 @@
                                     <Label Text="💡" FontSize="24" HorizontalOptions="Center" VerticalOptions="Center" />
                                 </Frame>
                                 <VerticalStackLayout Spacing="2">
-                                    <Label Text="Coach" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource AccentAlt}" />
-                                    <Label Text="Daily motivation + micro advice" FontSize="11" TextColor="{StaticResource MutedText}" />
+                                    <Label Text="Coach" FontSize="14" FontAttributes="Bold" FontFamily="OpenSansSemibold" TextColor="{StaticResource AccentAlt}" />
+                                    <Label Text="Daily motivation + micro advice" FontSize="11" FontFamily="OpenSansRegular" TextColor="{StaticResource MutedText}" />
                                 </VerticalStackLayout>
                             </HorizontalStackLayout>
 
@@ -229,6 +239,7 @@
                                 x:Name="CoachTipLabel"
                                 Text="Loading tips..."
                                 FontSize="12"
+                                FontFamily="OpenSansRegular"
                                 TextColor="{StaticResource PrimaryText}"
                                 LineBreakMode="WordWrap"
                                 LineHeight="1.4" />
@@ -257,16 +268,16 @@
 
                     <Frame Style="{StaticResource CardFrame}" BorderColor="#1d4ed8">
                         <VerticalStackLayout Spacing="12">
-                            <Label Text="Add Task" Style="{StaticResource SectionTitle}" />
+                            <Label Text="Add Task" Style="{StaticResource SectionTitle}" FontFamily="OpenSansSemibold" />
                             <HorizontalStackLayout Spacing="10">
-                                <Entry
-                                    x:Name="TaskEntry"
-                                    Placeholder="What needs to get done?"
-                                    BackgroundColor="#e2e8f0"
-                                    TextColor="{StaticResource PrimaryText}"
-                                    PlaceholderColor="{StaticResource MutedText}"
-                                    HorizontalOptions="FillAndExpand"
-                                    FontSize="13" />
+                                    <Entry
+                                        x:Name="TaskEntry"
+                                        Placeholder="What needs to get done?"
+                                        BackgroundColor="#e2e8f0"
+                                        TextColor="{StaticResource PrimaryText}"
+                                        PlaceholderColor="{StaticResource MutedText}"
+                                        HorizontalOptions="FillAndExpand"
+                                        FontSize="13" />
 
                                 <Button
                                     Text="Add"
@@ -333,7 +344,7 @@
 
                     <Frame Style="{StaticResource CardFrame}" BorderColor="#b45309">
                         <VerticalStackLayout Spacing="12">
-                            <Label Text="Add Habit" Style="{StaticResource SectionTitle}" />
+                            <Label Text="Add Habit" Style="{StaticResource SectionTitle}" FontFamily="OpenSansSemibold" />
                             <HorizontalStackLayout Spacing="10">
                                 <Entry
                                     x:Name="HabitEntry"
