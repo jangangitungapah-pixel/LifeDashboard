@@ -4,20 +4,20 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:LifeDashboard.Views"
     x:Class="LifeDashboard.MainPage"
-    BackgroundColor="#0b0f1a"
+    BackgroundColor="#f8fafc"
     Padding="0">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <Color x:Key="PageBackground">#0b0f1a</Color>
-            <Color x:Key="CardBackground">#121826</Color>
-            <Color x:Key="CardBorder">#1f2937</Color>
-            <Color x:Key="PrimaryText">#e2e8f0</Color>
-            <Color x:Key="MutedText">#94a3b8</Color>
-            <Color x:Key="Accent">#38bdf8</Color>
-            <Color x:Key="AccentAlt">#a78bfa</Color>
-            <Color x:Key="Success">#22c55e</Color>
-            <Color x:Key="Warning">#fbbf24</Color>
+            <Color x:Key="PageBackground">#f8fafc</Color>
+            <Color x:Key="CardBackground">#ffffff</Color>
+            <Color x:Key="CardBorder">#e2e8f0</Color>
+            <Color x:Key="PrimaryText">#0f172a</Color>
+            <Color x:Key="MutedText">#64748b</Color>
+            <Color x:Key="Accent">#2563eb</Color>
+            <Color x:Key="AccentAlt">#7c3aed</Color>
+            <Color x:Key="Success">#16a34a</Color>
+            <Color x:Key="Warning">#d97706</Color>
             <Style x:Key="CardFrame" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="{StaticResource CardBackground}" />
                 <Setter Property="BorderColor" Value="{StaticResource CardBorder}" />
@@ -39,9 +39,9 @@
             <Grid>
                 <Grid.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#0b0f1a" Offset="0" />
-                        <GradientStop Color="#111827" Offset="0.5" />
-                        <GradientStop Color="#0f172a" Offset="1" />
+                        <GradientStop Color="#f8fafc" Offset="0" />
+                        <GradientStop Color="#f1f5f9" Offset="0.5" />
+                        <GradientStop Color="#e2e8f0" Offset="1" />
                     </LinearGradientBrush>
                 </Grid.Background>
 
@@ -61,8 +61,8 @@
 
                     <Frame
                         Grid.Column="1"
-                        BackgroundColor="#0f172a"
-                        BorderColor="#1e293b"
+                        BackgroundColor="#e2e8f0"
+                        BorderColor="#cbd5e1"
                         CornerRadius="16"
                         Padding="12"
                         HasShadow="False">
@@ -110,8 +110,8 @@
                     <Frame Style="{StaticResource CardFrame}">
                         <Grid ColumnDefinitions="Auto,*" ColumnSpacing="18">
                             <Frame
-                                BackgroundColor="#0f172a"
-                                BorderColor="#1e293b"
+                                BackgroundColor="#e2e8f0"
+                                BorderColor="#cbd5e1"
                                 CornerRadius="18"
                                 Padding="0"
                                 WidthRequest="78"
@@ -147,7 +147,7 @@
                                 Progress="0"
                                 HeightRequest="10"
                                 ProgressColor="{StaticResource Accent}"
-                                BackgroundColor="#1f2937" />
+                                BackgroundColor="#e2e8f0" />
 
                             <Grid ColumnDefinitions="Auto,*,Auto">
                                 <Label Text="Leveling" FontSize="10" TextColor="{StaticResource MutedText}" />
@@ -180,7 +180,7 @@
                                     Progress="0"
                                     HeightRequest="6"
                                     ProgressColor="{StaticResource Success}"
-                                    BackgroundColor="#1f2937" />
+                                    BackgroundColor="#e2e8f0" />
                             </VerticalStackLayout>
                         </Frame>
 
@@ -201,7 +201,7 @@
                                     Progress="0"
                                     HeightRequest="6"
                                     ProgressColor="{StaticResource Warning}"
-                                    BackgroundColor="#1f2937" />
+                                    BackgroundColor="#e2e8f0" />
                             </VerticalStackLayout>
                         </Frame>
                     </Grid>
@@ -210,8 +210,8 @@
                         <VerticalStackLayout Spacing="14">
                             <HorizontalStackLayout Spacing="10">
                                 <Frame
-                                    BackgroundColor="#0f172a"
-                                    BorderColor="#312e81"
+                                    BackgroundColor="#e2e8f0"
+                                    BorderColor="#c4b5fd"
                                     CornerRadius="12"
                                     Padding="8"
                                     HasShadow="False"
@@ -237,11 +237,11 @@
                                 Text="Refresh Tip"
                                 x:Name="GetTipButton"
                                 Clicked="OnGetCoachTip"
-                                BackgroundColor="#1f2937"
+                                BackgroundColor="#e2e8f0"
                                 TextColor="{StaticResource AccentAlt}"
                                 FontSize="12"
                                 Padding="12,10"
-                                BorderColor="#312e81"
+                                BorderColor="#c4b5fd"
                                 BorderWidth="1"
                                 CornerRadius="12"
                                 FontAttributes="Bold" />
@@ -262,7 +262,7 @@
                                 <Entry
                                     x:Name="TaskEntry"
                                     Placeholder="What needs to get done?"
-                                    BackgroundColor="#0f172a"
+                                    BackgroundColor="#e2e8f0"
                                     TextColor="{StaticResource PrimaryText}"
                                     PlaceholderColor="{StaticResource MutedText}"
                                     HorizontalOptions="FillAndExpand"
@@ -294,8 +294,8 @@
                                             </SwipeView.RightItems>
 
                                             <Frame
-                                                BackgroundColor="#0f172a"
-                                                BorderColor="#1f2937"
+                                                BackgroundColor="#e2e8f0"
+                                                BorderColor="#cbd5e1"
                                                 CornerRadius="14"
                                                 Padding="12"
                                                 Margin="0,6"
@@ -338,7 +338,7 @@
                                 <Entry
                                     x:Name="HabitEntry"
                                     Placeholder="Build a daily routine"
-                                    BackgroundColor="#0f172a"
+                                    BackgroundColor="#e2e8f0"
                                     TextColor="{StaticResource PrimaryText}"
                                     PlaceholderColor="{StaticResource MutedText}"
                                     HorizontalOptions="FillAndExpand"
@@ -360,8 +360,8 @@
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <Frame
-                                            BackgroundColor="#0f172a"
-                                            BorderColor="#1f2937"
+                                            BackgroundColor="#e2e8f0"
+                                            BorderColor="#cbd5e1"
                                             CornerRadius="14"
                                             Padding="12"
                                             Margin="0,6"
