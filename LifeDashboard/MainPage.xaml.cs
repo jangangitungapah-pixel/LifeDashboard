@@ -1,15 +1,21 @@
-﻿using System.Timers;
-using System.Text.Json;
+﻿using System.Text.Json;
+using System.Timers;
 using LifeDashboard.Data;
 using LifeDashboard.Models;
 using LifeDashboard.Services;
 using LifeDashboard.Views;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace LifeDashboard;
 
 public partial class MainPage : ContentPage
 {
-    private System.Timers.Timer _timer;
+    private static readonly JsonSerializerOptions JsonOptions = new()
+    {
+        WriteIndented = true
+    };
+
+    private System.Timers.Timer? _timer;
 
     private List<TaskItem> _tasks = new();
     private List<HabitItem> _habits = new();
@@ -21,15 +27,16 @@ public partial class MainPage : ContentPage
     private string _habitPath =>
         Path.Combine(FileSystem.AppDataDirectory, "habits.json");
 
-    private bool _achievementShownToday = false;
-    private bool _pageReady = false;
+    private bool _achievementShownToday;
+    private bool _pageReady;
+    private bool _isInitialized;
 
     // Services
-    private IXPService _xpService;
-    private IAchievementService _achievementService;
-    private IAIService _aiService;
-    private INotificationService _notificationService;
-    private PersistenceHelper _persistence;
+    private IXPService _xpService = null!;
+    private IAchievementService _achievementService = null!;
+    private IAIService _aiService = null!;
+    private INotificationService _notificationService = null!;
+    private PersistenceHelper _persistence = null!;
 
     public MainPage()
     {
@@ -40,24 +47,24 @@ public partial class MainPage : ContentPage
     {
         base.OnAppearing();
 
-        // Initialize services from DI container
-        _persistence = IPlatformApplication.Current.Services.GetService<PersistenceHelper>();
-        _xpService = IPlatformApplication.Current.Services.GetService<IXPService>();
-        _achievementService = IPlatformApplication.Current.Services.GetService<IAchievementService>();
-        _aiService = IPlatformApplication.Current.Services.GetService<IAIService>();
-        _notificationService = IPlatformApplication.Current.Services.GetService<INotificationService>();
+        if (!_isInitialized)
+        {
+            InitializeServices();
 
-        // Initialize async services
-        await _xpService.InitializeAsync();
-        await _notificationService.InitializeAsync();
+            // Initialize async services
+            await _xpService.InitializeAsync();
+            await _notificationService.InitializeAsync();
 
-        // Load data
-        LoadTasks();
-        LoadHabits();
-        _dailyStats = _persistence.LoadDailyStats();
+            // Load data
+            LoadTasks();
+            LoadHabits();
+            _dailyStats = _persistence.LoadDailyStats();
 
-        // Setup event handlers
-        _xpService.LevelUp += OnLevelUp;
+            // Setup event handlers
+            _xpService.LevelUp += OnLevelUp;
+
+            _isInitialized = true;
+        }
 
         // Initial setup
         DailyReset();
@@ -73,6 +80,23 @@ public partial class MainPage : ContentPage
 
         // Mark page as ready for popups
         _pageReady = true;
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        StopClock();
+        _pageReady = false;
+    }
+
+    private void InitializeServices()
+    {
+        var services = IPlatformApplication.Current.Services;
+        _persistence = services.GetRequiredService<PersistenceHelper>();
+        _xpService = services.GetRequiredService<IXPService>();
+        _achievementService = services.GetRequiredService<IAchievementService>();
+        _aiService = services.GetRequiredService<IAIService>();
+        _notificationService = services.GetRequiredService<INotificationService>();
     }
 
     // ================== GAMIFICATION ==================
@@ -199,6 +223,12 @@ public partial class MainPage : ContentPage
 
     private void StartClock()
     {
+        if (_timer != null)
+        {
+            _timer.Start();
+            return;
+        }
+
         _timer = new System.Timers.Timer(1000);
         _timer.Elapsed += (s, e) =>
         {
@@ -209,6 +239,16 @@ public partial class MainPage : ContentPage
             });
         };
         _timer.Start();
+    }
+
+    private void StopClock()
+    {
+        if (_timer == null)
+            return;
+
+        _timer.Stop();
+        _timer.Dispose();
+        _timer = null;
     }
 
     // ================== DAILY RESET ================
@@ -230,17 +270,18 @@ public partial class MainPage : ContentPage
 
     // ================== TASKS ================
 
-    private async void OnAddTask(object sender, EventArgs e)
+    private void OnAddTask(object sender, EventArgs e)
     {
-        if (!string.IsNullOrWhiteSpace(TaskEntry.Text))
+        var title = TaskEntry.Text?.Trim();
+        if (!string.IsNullOrWhiteSpace(title))
         {
             _tasks.Add(new TaskItem
             {
-                Title = TaskEntry.Text,
+                Title = title,
                 IsCompleted = false
             });
 
-            TaskEntry.Text = "";
+            TaskEntry.Text = string.Empty;
             SaveTasks();
             RefreshTasks();
         }
@@ -282,17 +323,32 @@ public partial class MainPage : ContentPage
 
     private void SaveTasks()
     {
-        var json = JsonSerializer.Serialize(_tasks);
-        File.WriteAllText(_taskPath, json);
+        try
+        {
+            var json = JsonSerializer.Serialize(_tasks, JsonOptions);
+            File.WriteAllText(_taskPath, json);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error saving tasks: {ex.Message}");
+        }
     }
 
     private void LoadTasks()
     {
-        if (File.Exists(_taskPath))
+        try
         {
+            if (!File.Exists(_taskPath))
+                return;
+
             var json = File.ReadAllText(_taskPath);
             _tasks = JsonSerializer.Deserialize<List<TaskItem>>(json)
                      ?? new List<TaskItem>();
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error loading tasks: {ex.Message}");
+            _tasks = new List<TaskItem>();
         }
     }
 
@@ -307,17 +363,18 @@ public partial class MainPage : ContentPage
 
     private void OnAddHabit(object sender, EventArgs e)
     {
-        if (!string.IsNullOrWhiteSpace(HabitEntry.Text))
+        var title = HabitEntry.Text?.Trim();
+        if (!string.IsNullOrWhiteSpace(title))
         {
             _habits.Add(new HabitItem
             {
-                Title = HabitEntry.Text,
+                Title = title,
                 IsCompleted = false,
                 Streak = 0,
                 LastCompletedDate = DateTime.MinValue
             });
 
-            HabitEntry.Text = "";
+            HabitEntry.Text = string.Empty;
             SaveHabits();
             RefreshHabits();
         }
@@ -364,17 +421,32 @@ public partial class MainPage : ContentPage
 
     private void SaveHabits()
     {
-        var json = JsonSerializer.Serialize(_habits);
-        File.WriteAllText(_habitPath, json);
+        try
+        {
+            var json = JsonSerializer.Serialize(_habits, JsonOptions);
+            File.WriteAllText(_habitPath, json);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error saving habits: {ex.Message}");
+        }
     }
 
     private void LoadHabits()
     {
-        if (File.Exists(_habitPath))
+        try
         {
+            if (!File.Exists(_habitPath))
+                return;
+
             var json = File.ReadAllText(_habitPath);
             _habits = JsonSerializer.Deserialize<List<HabitItem>>(json)
                       ?? new List<HabitItem>();
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error loading habits: {ex.Message}");
+            _habits = new List<HabitItem>();
         }
     }
 
@@ -468,7 +540,6 @@ public partial class MainPage : ContentPage
         }
     }
 }
-
 
 
 

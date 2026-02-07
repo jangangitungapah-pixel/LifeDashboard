@@ -66,6 +66,12 @@
 		<PackageReference Include="CommunityToolkit.Maui.Core" Version="14.0.0" />
 		<PackageReference Include="CommunityToolkit.Maui.Markup" Version="7.0.0" />
 
+		<!-- Advanced UI & Visualization -->
+		<PackageReference Include="UraniumUI" Version="2.1.0" />
+		<PackageReference Include="UraniumUI.Material" Version="2.1.0" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="3.119.0" />
+		<PackageReference Include="LiveChartsCore.SkiaSharpView.Maui" Version="2.0.0-rc5" />
+
 		<!-- MVVM & Architecture -->
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
 
@@ -108,4 +114,3 @@
 
 
 </Project>
-

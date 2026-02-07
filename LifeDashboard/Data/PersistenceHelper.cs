@@ -9,6 +9,11 @@ namespace LifeDashboard.Data;
 /// </summary>
 public class PersistenceHelper : IDisposable
 {
+    private static readonly JsonSerializerOptions JsonOptions = new()
+    {
+        WriteIndented = true
+    };
+
     private readonly string _profilePath;
     private readonly string _xpEventsPath;
     private readonly string _dailyStatsPath;
@@ -48,8 +53,7 @@ public class PersistenceHelper : IDisposable
         ArgumentNullException.ThrowIfNull(profile);
         try
         {
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            var json = JsonSerializer.Serialize(profile, options);
+            var json = JsonSerializer.Serialize(profile, JsonOptions);
             File.WriteAllText(_profilePath, json);
         }
         catch (Exception ex)
@@ -84,8 +88,7 @@ public class PersistenceHelper : IDisposable
         ArgumentNullException.ThrowIfNull(events);
         try
         {
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            var json = JsonSerializer.Serialize(events, options);
+            var json = JsonSerializer.Serialize(events, JsonOptions);
             File.WriteAllText(_xpEventsPath, json);
         }
         catch (Exception ex)
@@ -120,8 +123,7 @@ public class PersistenceHelper : IDisposable
         ArgumentNullException.ThrowIfNull(stats);
         try
         {
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            var json = JsonSerializer.Serialize(stats, options);
+            var json = JsonSerializer.Serialize(stats, JsonOptions);
             File.WriteAllText(_dailyStatsPath, json);
         }
         catch (Exception ex)
