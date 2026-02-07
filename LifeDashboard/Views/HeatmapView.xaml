@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="LifeDashboard.Views.HeatmapView"
+    BackgroundColor="Transparent">
+
+    <VerticalStackLayout Padding="8" Spacing="12">
+        <!-- Heatmap Grid -->
+        <Grid x:Name="HeatmapGrid"
+              RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+              ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+              ColumnSpacing="3"
+              RowSpacing="3" />
+
+        <!-- Legend -->
+        <HorizontalStackLayout Spacing="8" HorizontalOptions="Center">
+            <Label Text="Less" FontSize="10" TextColor="#94a3b8" VerticalOptions="Center" />
+            <Frame BackgroundColor="#0f172a" CornerRadius="3" Padding="2" WidthRequest="14" HeightRequest="14" />
+            <Frame BackgroundColor="#06b6d4" CornerRadius="3" Padding="2" WidthRequest="14" HeightRequest="14" />
+            <Frame BackgroundColor="#0891b2" CornerRadius="3" Padding="2" WidthRequest="14" HeightRequest="14" />
+            <Frame BackgroundColor="#0e7490" CornerRadius="3" Padding="2" WidthRequest="14" HeightRequest="14" />
+            <Frame BackgroundColor="#065f73" CornerRadius="3" Padding="2" WidthRequest="14" HeightRequest="14" />
+            <Label Text="More" FontSize="10" TextColor="#94a3b8" VerticalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <!-- Total Stats -->
+        <Frame 
+            BackgroundColor="#0f172a"
+            BorderColor="#334155"
+            CornerRadius="12"
+            Padding="12"
+            HasShadow="False">
+            <HorizontalStackLayout Spacing="16">
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Current Streak" FontSize="10" TextColor="#94a3b8" />
+                    <Label x:Name="CurrentStreakLabel" Text="0 days" FontSize="14" FontAttributes="Bold" TextColor="#06b6d4" />
+                </VerticalStackLayout>
+                
+                <VerticalStackLayout Spacing="2">
+                    <Label Text="Completed Today" FontSize="10" TextColor="#94a3b8" />
+                    <Label x:Name="CompletedTodayLabel" Text="0%" FontSize="14" FontAttributes="Bold" TextColor="#ec4899" />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+        </Frame>
+    </VerticalStackLayout>
+
+</ContentView>
+
+

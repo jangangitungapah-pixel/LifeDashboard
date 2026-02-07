@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="LifeDashboard.Views.LevelUpPopup"
+    BackgroundColor="Transparent"
+    InputTransparent="True">
+
+    <Frame x:Name="PopupFrame"
+           CornerRadius="28"
+           BackgroundColor="#1e293b"
+           BorderColor="#06b6d4"
+           Padding="28"
+           HasShadow="True"
+           IsVisible="False">
+
+        <VerticalStackLayout Spacing="20" HorizontalOptions="Center">
+
+            <!-- Star Animation -->
+            <Label 
+                Text="⭐"
+                FontSize="56"
+                HorizontalOptions="Center" />
+
+            <!-- Level Up Text -->
+            <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                <Label 
+                    Text="LEVEL UP! 🎉"
+                    FontSize="28"
+                    FontAttributes="Bold"
+                    TextColor="#06b6d4"
+                    HorizontalOptions="Center" />
+
+                <Label 
+                    x:Name="LevelLabel"
+                    Text="Level 5"
+                    FontSize="40"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+            <!-- XP Info -->
+            <Frame 
+                BackgroundColor="#0f172a"
+                BorderColor="#334155"
+                CornerRadius="12"
+                Padding="12"
+                HasShadow="False">
+                <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
+                    <Label 
+                        x:Name="XpLabel"
+                        Text="Total XP: 2500"
+                        FontSize="14"
+                        TextColor="White"
+                        HorizontalOptions="Center" />
+
+                    <Label 
+                        x:Name="BadgeLabel"
+                        Text="🏆 Badge Earned"
+                        FontSize="14"
+                        TextColor="#f59e0b"
+                        HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Close Button -->
+            <Button 
+                x:Name="CloseButton"
+                Text="Awesome! Keep Going 🚀"
+                Clicked="OnCloseClicked"
+                BackgroundColor="#06b6d4"
+                TextColor="White"
+                CornerRadius="12"
+                FontAttributes="Bold"
+                Padding="16,12"
+                FontSize="13" />
+
+        </VerticalStackLayout>
+
+    </Frame>
+
+</ContentView>
+
+

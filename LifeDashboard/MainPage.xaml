@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:LifeDashboard.Views"
+    x:Class="LifeDashboard.MainPage"
+    BackgroundColor="#0f1117"
+    Padding="0">
+
+    <AbsoluteLayout>
+        <!-- Main Scrollable Content -->
+        <ScrollView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+            <VerticalStackLayout Padding="16" Spacing="14" BackgroundColor="#0f1117">
+
+                <!-- Header Section - Premium Dark Gradient Feel -->
+                <VerticalStackLayout Spacing="6" Margin="0,12,0,0">
+                    <Label 
+                        Text="⚡ LIFE DASHBOARD"
+                        FontSize="36"
+                        FontAttributes="Bold"
+                        TextColor="#00d9ff"
+                        CharacterSpacing="1.2" />
+                    
+                    <HorizontalStackLayout Spacing="8">
+                        <Label 
+                            x:Name="DateLabel"
+                            FontSize="11"
+                            TextColor="#8b949e"
+                            FontAttributes="Bold" />
+                        <BoxView WidthRequest="1" BackgroundColor="#30363d" />
+                        <Label 
+                            x:Name="TimeLabel"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            TextColor="#ffffff" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+
+                <!-- Premium Level Card with Modern Design -->
+                <Frame 
+                    BackgroundColor="#161b22"
+                    BorderColor="#1f6feb"
+                    CornerRadius="24"
+                    Padding="24"
+                    HasShadow="True">
+
+                    <VerticalStackLayout Spacing="20">
+                        <!-- Level Display Section -->
+                        <HorizontalStackLayout Spacing="16" VerticalOptions="Center">
+                            <Frame 
+                                BackgroundColor="#0d1117"
+                                CornerRadius="20"
+                                Padding="0"
+                                WidthRequest="80"
+                                HeightRequest="80"
+                                HasShadow="False"
+                                BorderColor="#1f6feb">
+                                <Label 
+                                    Text="⭐"
+                                    FontSize="48"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center" />
+                            </Frame>
+
+                            <VerticalStackLayout Spacing="4" HorizontalOptions="FillAndExpand">
+                                <Label 
+                                    x:Name="LevelLabel"
+                                    Text="Level 0"
+                                    FontSize="32"
+                                    FontAttributes="Bold"
+                                    TextColor="#00d9ff"
+                                    CharacterSpacing="0.5" />
+                                
+                                <Label 
+                                    x:Name="XpLabel"
+                                    Text="0 / 100 XP"
+                                    FontSize="13"
+                                    TextColor="#8b949e" />
+
+                                <Label 
+                                    x:Name="XpPercentLabel"
+                                    Text="0%"
+                                    FontSize="11"
+                                    TextColor="#58a6ff"
+                                    FontAttributes="Bold" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+
+                        <!-- XP Progress Bar - Modern Style -->
+                        <VerticalStackLayout Spacing="8">
+                            <ProgressBar 
+                                x:Name="XpProgressBar"
+                                Progress="0"
+                                HeightRequest="12"
+                                ProgressColor="#00d9ff"
+                                BackgroundColor="#30363d" />
+                            
+                            <HorizontalStackLayout Spacing="4">
+                                <Label Text="Progress" FontSize="10" TextColor="#8b949e" />
+                                <BoxView HorizontalOptions="FillAndExpand" />
+                                <Label Text="Next Level" FontSize="10" TextColor="#8b949e" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+
+                        <!-- Achievements Section -->
+                        <VerticalStackLayout Spacing="12">
+                            <Label 
+                                Text="🏆 Achievements Unlocked"
+                                FontSize="13"
+                                FontAttributes="Bold"
+                                TextColor="#ffffff"
+                                CharacterSpacing="0.5" />
+                            
+                            <HorizontalStackLayout 
+                                x:Name="BadgesContainer" 
+                                Spacing="10"
+                                Padding="4" />
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Progress Cards Grid - Modern Design -->
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12" RowSpacing="12">
+                    <!-- Tasks Card -->
+                    <Frame 
+                        Grid.Column="0"
+                        BackgroundColor="#161b22"
+                        BorderColor="#238636"
+                        CornerRadius="16"
+                        Padding="16"
+                        HasShadow="True">
+                        <VerticalStackLayout Spacing="12">
+                            <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+                                <Label Text="📋" FontSize="22" />
+                                <Label 
+                                    Text="Tasks"
+                                    FontSize="14"
+                                    FontAttributes="Bold"
+                                    TextColor="#ffffff" />
+                            </HorizontalStackLayout>
+                            
+                            <Label 
+                                x:Name="TaskStatsLabel"
+                                Text="0/0"
+                                FontSize="24"
+                                FontAttributes="Bold"
+                                TextColor="#238636" />
+                            
+                            <ProgressBar 
+                                x:Name="TaskProgressBar"
+                                Progress="0"
+                                HeightRequest="6"
+                                ProgressColor="#238636"
+                                BackgroundColor="#30363d" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Habits Card -->
+                    <Frame 
+                        Grid.Column="1"
+                        BackgroundColor="#161b22"
+                        BorderColor="#d29922"
+                        CornerRadius="16"
+                        Padding="16"
+                        HasShadow="True">
+                        <VerticalStackLayout Spacing="12">
+                            <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+                                <Label Text="🎯" FontSize="22" />
+                                <Label 
+                                    Text="Habits"
+                                    FontSize="14"
+                                    FontAttributes="Bold"
+                                    TextColor="#ffffff" />
+                            </HorizontalStackLayout>
+                            
+                            <Label 
+                                x:Name="HabitStatsLabel"
+                                Text="0/0"
+                                FontSize="24"
+                                FontAttributes="Bold"
+                                TextColor="#d29922" />
+                            
+                            <ProgressBar 
+                                x:Name="HabitProgressBar"
+                                Progress="0"
+                                HeightRequest="6"
+                                ProgressColor="#d29922"
+                                BackgroundColor="#30363d" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </Grid>
+
+                <!-- AI Coach Card - Modern with Accent -->
+                <Frame 
+                    BackgroundColor="#161b22"
+                    BorderColor="#a371f7"
+                    CornerRadius="16"
+                    Padding="20"
+                    HasShadow="True">
+                    <VerticalStackLayout Spacing="14">
+                        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                            <Frame 
+                                BackgroundColor="#0d1117"
+                                CornerRadius="12"
+                                Padding="8"
+                                HasShadow="False"
+                                WidthRequest="44"
+                                HeightRequest="44"
+                                BorderColor="#a371f7">
+                                <Label Text="💡" FontSize="26" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Frame>
+                            <Label 
+                                Text="Daily Coaching"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                TextColor="#a371f7"
+                                CharacterSpacing="0.5" />
+                        </HorizontalStackLayout>
+                        
+                        <Label 
+                            x:Name="CoachTipLabel"
+                            Text="Loading tips..."
+                            FontSize="12"
+                            TextColor="#c9d1d9"
+                            LineBreakMode="WordWrap"
+                            LineHeight="1.5" />
+                        
+                        <Button 
+                            Text="🔄 Get Another Tip"
+                            x:Name="GetTipButton"
+                            Clicked="OnGetCoachTip"
+                            BackgroundColor="Transparent"
+                            TextColor="#a371f7"
+                            FontSize="12"
+                            Padding="12,10"
+                            BorderColor="#a371f7"
+                            BorderWidth="1.5"
+                            CornerRadius="10"
+                            FontAttributes="Bold" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Heatmap Section -->
+                <VerticalStackLayout Spacing="10">
+                    <Label 
+                        Text="📅 Activity Heatmap (90 Days)"
+                        FontSize="13"
+                        FontAttributes="Bold"
+                        TextColor="#ffffff"
+                        CharacterSpacing="0.5" />
+                    
+                    <Frame 
+                        BackgroundColor="#161b22"
+                        BorderColor="#30363d"
+                        CornerRadius="16"
+                        Padding="16"
+                        HasShadow="True">
+                        <local:HeatmapView x:Name="HeatmapView" />
+                    </Frame>
+                </VerticalStackLayout>
+
+                <!-- Add Task Section -->
+                <Frame 
+                    BackgroundColor="#161b22"
+                    BorderColor="#1f6feb"
+                    CornerRadius="16"
+                    Padding="16"
+                    HasShadow="True">
+                    <VerticalStackLayout Spacing="12">
+                        <Label 
+                            Text="➕ Add Task"
+                            FontSize="13"
+                            FontAttributes="Bold"
+                            TextColor="#ffffff"
+                            CharacterSpacing="0.5" />
+                        
+                        <HorizontalStackLayout Spacing="10">
+                            <Entry 
+                                x:Name="TaskEntry"
+                                Placeholder="Add a new task..."
+                                BackgroundColor="#0d1117"
+                                TextColor="#c9d1d9"
+                                PlaceholderColor="#8b949e"
+                                HorizontalOptions="FillAndExpand"
+                                FontSize="13" />
+                            
+                            <Button 
+                                Text="Add"
+                                Clicked="OnAddTask"
+                                BackgroundColor="#1f6feb"
+                                TextColor="#ffffff"
+                                CornerRadius="10"
+                                WidthRequest="70"
+                                FontSize="12"
+                                FontAttributes="Bold"
+                                Padding="0" />
+                        </HorizontalStackLayout>
+
+                        <CollectionView x:Name="TaskList" SelectionMode="None">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <SwipeView>
+                                        <SwipeView.RightItems>
+                                            <SwipeItems Mode="Reveal">
+                                                <SwipeItem
+                                                    Text="Delete"
+                                                    BackgroundColor="#da3633"
+                                                    Invoked="OnDeleteTask" />
+                                            </SwipeItems>
+                                        </SwipeView.RightItems>
+
+                                        <Frame 
+                                            BackgroundColor="#0d1117"
+                                            BorderColor="#30363d"
+                                            CornerRadius="12"
+                                            Padding="12"
+                                            Margin="0,6"
+                                            HasShadow="False"
+                                            BorderWidth="1">
+                                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                                                <CheckBox 
+                                                    IsChecked="{Binding IsCompleted}"
+                                                    CheckedChanged="OnTaskCheckedChanged"
+                                                    VerticalOptions="Center" />
+
+                                                <Label 
+                                                    Grid.Column="1"
+                                                    Text="{Binding Title}"
+                                                    TextColor="#c9d1d9"
+                                                    VerticalOptions="Center"
+                                                    FontSize="13" />
+
+                                                <Button 
+                                                    Grid.Column="2"
+                                                    Text="🗑"
+                                                    Clicked="OnDeleteTaskButton"
+                                                    BackgroundColor="Transparent"
+                                                    TextColor="#da3633"
+                                                    Padding="8"
+                                                    FontSize="14" />
+                                            </Grid>
+                                        </Frame>
+                                    </SwipeView>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Add Habit Section -->
+                <Frame 
+                    BackgroundColor="#161b22"
+                    BorderColor="#d29922"
+                    CornerRadius="16"
+                    Padding="16"
+                    HasShadow="True">
+                    <VerticalStackLayout Spacing="12">
+                        <Label 
+                            Text="➕ Add Habit"
+                            FontSize="13"
+                            FontAttributes="Bold"
+                            TextColor="#ffffff"
+                            CharacterSpacing="0.5" />
+                        
+                        <HorizontalStackLayout Spacing="10">
+                            <Entry 
+                                x:Name="HabitEntry"
+                                Placeholder="Add a new habit..."
+                                BackgroundColor="#0d1117"
+                                TextColor="#c9d1d9"
+                                PlaceholderColor="#8b949e"
+                                HorizontalOptions="FillAndExpand"
+                                FontSize="13" />
+                            
+                            <Button 
+                                Text="Add"
+                                Clicked="OnAddHabit"
+                                BackgroundColor="#d29922"
+                                TextColor="#ffffff"
+                                CornerRadius="10"
+                                WidthRequest="70"
+                                FontSize="12"
+                                FontAttributes="Bold"
+                                Padding="0" />
+                        </HorizontalStackLayout>
+
+                        <CollectionView x:Name="HabitList" SelectionMode="None">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame 
+                                        BackgroundColor="#0d1117"
+                                        BorderColor="#30363d"
+                                        CornerRadius="12"
+                                        Padding="12"
+                                        Margin="0,6"
+                                        HasShadow="False"
+                                        BorderWidth="1">
+                                        <HorizontalStackLayout Spacing="12">
+                                            <CheckBox 
+                                                IsChecked="{Binding IsCompleted}"
+                                                CheckedChanged="OnHabitCheckedChanged"
+                                                VerticalOptions="Center" />
+
+                                            <VerticalStackLayout HorizontalOptions="FillAndExpand" Spacing="4">
+                                                <Label 
+                                                    Text="{Binding Title}"
+                                                    TextColor="#c9d1d9"
+                                                    FontSize="13"
+                                                    FontAttributes="Bold" />
+                                                
+                                                <Label 
+                                                    Text="{Binding Streak, StringFormat='🔥 {0} day streak'}"
+                                                    TextColor="#d29922"
+                                                    FontSize="11" />
+                                            </VerticalStackLayout>
+                                        </HorizontalStackLayout>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Bottom Spacer -->
+                <BoxView HeightRequest="50" BackgroundColor="Transparent" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Confetti Overlay - Always InputTransparent -->
+        <Grid 
+            AbsoluteLayout.LayoutBounds="0,0,1,1" 
+            AbsoluteLayout.LayoutFlags="All"
+            IsVisible="False" 
+            x:Name="OverlayGrid"
+            InputTransparent="True"
+            BackgroundColor="Transparent">
+            <local:ConfettiView x:Name="ConfettiView" />
+        </Grid>
+
+        <!-- Level Up Popup - Always InputTransparent -->
+        <local:LevelUpPopup 
+            x:Name="LevelUpPopup" 
+            AbsoluteLayout.LayoutBounds="0.5,0.5,0.85,0.7" 
+            AbsoluteLayout.LayoutFlags="PositionProportional,SizeProportional"
+            InputTransparent="True" />
+    </AbsoluteLayout>
+
+</ContentPage>
